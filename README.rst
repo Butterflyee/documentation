@@ -9,7 +9,8 @@ See the `Style Guide <https://github.com/nextcloud/documentation/blob/master/sty
 Manuals
 -------
 
-This repository hosts three manuals:
+This repository hosts three manuals:p
+p
 
 * **Users' Manual**
 * **Administration Manual**
