@@ -308,6 +308,10 @@ To show available update(s) without updating::
 
     sudo -u www-data php occ app:update --showonly
 
+To update an app to an unstable release, for instance News::
+
+    sudo -u www-data php occ app:update --allow-unstable news
+
 .. _background_jobs_selector_label:
 
 Background jobs selector
@@ -365,6 +369,7 @@ While setting a configuration value, multiple options are available:
 
 .. _Appconfig Concepts: https://docs.nextcloud.com/server/latest/developer_manual/digging_deeper/config/appconfig.html#concept-overview
 
+.. TODO ON RELEASE: Update version number above on release
 
 You can list all configuration values with one command::
 

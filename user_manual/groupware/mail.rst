@@ -288,6 +288,15 @@ You now have the ability to delete tags that you have previously created. To acc
 
 .. note:: Please note that default tags such as Work, To do, Personal, and Later cannot be deleted, they can only be renamed.
 
+AI summary
+~~~~~~~~~~
+
+.. versionadded:: 4.2
+
+When looking through your mailbox you will see a short AI generated summary of your emails as a preview.
+
+.. note:: Please note that the feature has to be enabled by the administrator
+
 Message actions
 ---------------
 
@@ -320,6 +329,15 @@ When you open a message in the Mail app, it proposes AI-generated replies. By si
 
 .. note:: Supported languages depend on the used large language model
 
+Mail translation
+~~~~~~~~~~~~~~~~
+
+.. versionadded:: 4.2
+
+You are able to translate messages to your configured languages similarly to Talk.
+
+.. note:: Please note that translation features have to be enabled on the server
+
 Thread summary
 --------------
 
@@ -334,7 +352,7 @@ The mail app supports summarizing message threads that contain 3 or more message
 Filtering and autoresponder
 ---------------------------
 
-The Mail app has a simple editor for Sieve scripts and an interface to configure autoresponders. Sieve has to be enabled in the :ref:`account settings <mail-account-settings>`.
+The Mail app has a editor for Sieve scripts, an interface to configure autoresponders and an interface to configure filters. Sieve has to be enabled in the :ref:`account settings <mail-account-settings>`.
 
 Autoresponders
 ~~~~~~~~~~~~~~
@@ -342,6 +360,52 @@ Autoresponders
 .. versionadded:: 3.5 Autoresponder can follow system settings.
 
 The autoresponder is off by default. It can be set manually, or follow the system settings. Following system settings means that the long absence message entered on the :ref:`Absence settings section <groupware-absence>` is applied automatically.
+
+Filter
+~~~~~~
+
+.. versionadded:: 4.1
+
+Mail 4.1 includes a simple editor to configure filter rules.
+
+
+.. note:: Importing existing filters is not supported. However, all existing filters will remain active and unchanged.  We recommend backing up your current script through the Sieve script editor as a precaution.
+
+How to Add a New Filter
+^^^^^^^^^^^^^^^^^^^^^^^
+
+1. Open your account settings.
+2. Verify that Sieve is enabled for your account (see Sieve server settings).
+3. Click on Filters.
+4. Select New Filter to create a new rule.
+
+How to Delete a Filter
+^^^^^^^^^^^^^^^^^^^^^^
+
+1. Open your account settings.
+2. Ensure that Sieve is enabled for your account (see Sieve server settings).
+3. Click on Filters.
+4. Hover over the filter you wish to delete, then click the trash icon.
+
+
+Tests
+^^^^^
+
+Tests are applied to incoming emails on your mail server, targeting fields such as subject (the email\'s subject line), from (the sender), and to (the recipient). You can use the following operators to define conditions for these fields:
+
+- **is**: An exact match. The field must be identical to the provided value.
+- **contains**: A substring match. The field matches if the provided value is contained within it. For example, "report" would match "port".
+- **matches**: A pattern match using wildcards. The "*" symbol represents any number of characters (including none), while "?" represents exactly one character. For example, "*report*" would match "Business report 2024".
+
+Actions
+^^^^^^^
+
+Actions are triggered when the specified tests are true. The following actions are available:
+
+- **fileinto**: Moves the message into a specified folder.
+- **addflag**: Adds a flag to the message.
+- **stop**: Halts the execution of the filter script. No further filters with will be processed after this action.
+
 
 Follow-up reminders
 -------------------

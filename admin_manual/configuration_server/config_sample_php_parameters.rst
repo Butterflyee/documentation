@@ -609,8 +609,9 @@ skeletondirectory
 	'skeletondirectory' => '/path/to/nextcloud/core/skeleton',
 
 The directory where the skeleton files are located. These files will be
-copied to the data directory of new users. Leave empty to not copy any
-skeleton files.
+copied to the data directory of new users. Set empty string to not copy any
+skeleton files. If unset and templatedirectory is empty string, shipped
+templates will be used to create a template directory for the user.
 
 ``{lang}`` can be used as a placeholder for the language of the user.
 If the directory does not exist, it falls back to non dialect (from ``de_DE``
@@ -627,16 +628,15 @@ templatedirectory
 	'templatedirectory' => '/path/to/nextcloud/templates',
 
 The directory where the template files are located. These files will be
-copied to the template directory of new users. Leave empty to not copy any
+copied to the template directory of new users. Set empty string to not copy any
 template files.
 
 ``{lang}`` can be used as a placeholder for the language of the user.
 If the directory does not exist, it falls back to non dialect (from ``de_DE``
 to ``de``). If that does not exist either, it falls back to ``default``
 
-If this is not set creating a template directory will only happen if no custom
-``skeletondirectory`` is defined, otherwise the shipped templates will be used
-to create a template directory for the user.
+To disable creating a template directory, set both skeletondirectory and
+templatedirectory to empty strings.
 
 User session
 ------------
@@ -2239,6 +2239,20 @@ If a file exceeds this size, metadata generation will be skipped.
 Note: memory equivalent to this size will be used for metadata generation.
 
 Default: 256 megabytes.
+
+max_file_conversion_filesize
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+
+::
+
+	'max_file_conversion_filesize' => 100,
+
+Maximum file size for file conversion.
+
+If a file exceeds this size, the file will not be converted.
+
+Default: 100 MiB
 
 LDAP
 ----
@@ -3934,6 +3948,20 @@ A bigger count results in higher throughput, but will also consume more server w
 while the improvements diminish.
 
 Defaults to 5.
+
+files.trash.delete
+^^^^^^^^^^^^^^^^^^
+
+
+::
+
+	'files.trash.delete' => true,
+
+Allow users to manually delete files from their trashbin.
+
+Automated deletions are not affected and will continue to work in cases like low remaining quota for example.
+
+Defaults to true.
 
 .. ALL_OTHER_SECTIONS_END
 .. Generated content above. Don't change this.
